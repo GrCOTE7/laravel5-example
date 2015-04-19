@@ -10,30 +10,29 @@ trait DatePresenter {
 	 * @param Carbon  $date
 	 * @return string
 	 */
-	public function getCreatedAtAttribute($date)
-	{
-		return Carbon::parse($date)->format($this->getFormat());
+	public
+function getCreatedAtAttribute($date) {
+		return $this->getDateFormated($date);
 	}
 
 	/**
 	 * Format updated_at attribute
 	 *
-     * @param Carbon  $date
+	 * @param Carbon  $date
 	 * @return string
 	 */
-	public function getUpdatedAtAttribute($date)
-	{
-	  return Carbon::parse($date)->format($this->getFormat());
+	public function getUpdatedAtAttribute($date) {
+		return $this->getDateFormated($date);
 	}
 
 	/**
 	 * Format date
 	 *
+	 * @param Carbon  $date
 	 * @return string
 	 */
-	private function getFormat()
-	{
-	  return config('app.locale') == 'fr' ? 'd-m-Y' : 'm-d-Y';
+	private function getDateFormated($date) {
+		return Carbon::parse($date)->format(config('app.locale') == 'fr'?'d/m/Y':'m/d/Y');
 	}
 
 }
